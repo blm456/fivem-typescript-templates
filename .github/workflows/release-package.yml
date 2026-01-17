@@ -22,6 +22,10 @@ jobs:
           mkdir -p dist
           cd resource-template
           zip -r ../dist/ts-basic-resource.zip .
+          cd ../nui-template
+          zip -r ../dist/ts-nui-resource.zip .
+          cd ../loadingscreen-template
+          zip -r ../dist/ts-loadingscreen-resource.zip .
 
       # Create the GitHub Release and upload the ZIP
       - name: Create release and upload assets
@@ -31,6 +35,8 @@ jobs:
           name: Release ${{ github.ref_name }}
           artifacts: |
             dist/ts-basic-resource.zip
+            dist/ts-nui-resource.zip
+            dist/ts-loadingscreen-resource.zip
           allowUpdates: true
           replacesArtifacts: true
           generateReleaseNotes: false
