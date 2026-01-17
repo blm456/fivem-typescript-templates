@@ -1,0 +1,23 @@
+{
+  "name": "resource-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build/build-bundle.js",
+    "watch": "cross-env IS_WATCH_MODE=1 node build/build-bundle.js",
+    "clean": "node -e \"require('fs').rmSync('node_modules', { recursive: true, force: true });\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.4.1",
+  "devDependencies": {
+    "@citizenfx/client": "2.0.23683-1",
+    "@citizenfx/server": "2.0.23683-1",
+    "@types/node": "^25.0.9",
+    "cross-env": "^10.1.0",
+    "esbuild": "^0.27.2",
+    "typescript": "^5.9.3"
+  }
+}
