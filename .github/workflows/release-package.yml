@@ -1,0 +1,36 @@
+name: Create and Upload Release Assets
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Zip a folder from the repo into an asset file
+      - name: Create ZIP assets
+        run: |
+          mkdir -p dist
+          cd resource-template
+          zip -r ../dist/ts-basic-resource.zip .
+
+      # Create the GitHub Release and upload the ZIP
+      - name: Create release and upload assets
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          artifacts: |
+            dist/ts-basic-resource.zip
+          allowUpdates: true
+          replacesArtifacts: true
+          generateReleaseNotes: false
